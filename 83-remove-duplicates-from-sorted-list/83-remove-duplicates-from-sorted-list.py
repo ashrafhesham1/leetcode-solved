@@ -8,8 +8,7 @@ class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         pointer = head
         while pointer != None :
-            if pointer.next != None :
-                if pointer.val == pointer.next.val :
+            if pointer.next != None and  pointer.val == pointer.next.val:
                     pointer.next = pointer.next.next
                     continue
             pointer = pointer.next
