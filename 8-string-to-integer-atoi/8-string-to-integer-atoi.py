@@ -1,29 +1,26 @@
-import sys
-
-
 class Solution:
     def myAtoi(self, s: str) -> int:
+        
+        maxInt = 2147483647
+        minInt = -2147483648
 
         s = s.strip()
-        
-        if not s : return 0
 
-        sign, start = 1, 0
-        if s[0] == '-' or s[0] == '+':
-            start = min(1,len(s)-1)
-            if s[0] == '-':
+        index,sign=0,1
+        if s and ( s[0] == '-' or s[0] == '+' ):
+            index = min(1,len(s))
+            if s[0] == '-' :
                 sign = -1
 
-        nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        res=0
+        while index < len(s) :
 
-        if s[start] not in nums : return 0
+            digit = ord(s[index]) - ord('0')
 
-        end = start
-        while end < len(s) - 1 :
-            if s[end + 1] not in nums:
-                break
+            if digit >= 0 and digit <= 9 :
+                res = res*10 + digit
+                index += 1
+            else:break
 
-            end += 1
-
-        num = int(s[start:end + 1]) * sign
-        return min(num, 2147483647) if num >= 0 else max(num, -2147483648)
+        if  sign == 1 : return min(res*sign, maxInt) 
+        else : return max(res*sign, minInt)
