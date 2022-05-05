@@ -1,4 +1,20 @@
 class Solution:
+
+    def hasCycle(self, head: ListNode) -> bool:
+        fast, slow = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast : return True
+
+        return False
+
+
+
+
+'''
+class Solution:
     
     def _hasCycle(self, head: ListNode, visited ) -> bool:
 
@@ -10,3 +26,5 @@ class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         if not head : return False
         return self._hasCycle(head,[])
+        
+'''
