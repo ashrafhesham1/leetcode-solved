@@ -3,9 +3,8 @@ class Solution:
         dupHash = {}
         for i,num in enumerate(nums):
             if num not in dupHash :
-                dupHash[num] = [i]
+                dupHash[num] = i
             else:
-                for j in dupHash[num] :
-                    if abs(i-j) <= k : return True
-                dupHash[num].append(i)
+                if abs(i-dupHash[num]) <= k : return True
+                dupHash[num] = i
         return False
